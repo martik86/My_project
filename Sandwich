@@ -1,0 +1,11 @@
+import requests
+
+food = input('Enter ingredients: ').split(',')
+url = f'https://api.spoonacular.com/recipes/complexSearch?apiKey=YOUR_API_KEY&query={",".join(food)}'
+response = requests.get(url)
+if response.status_code == 200:
+    recipes = response.json()['results']
+    for recipe in recipes:
+        print(recipe['title'])
+else:
+    print('Sandwich')
