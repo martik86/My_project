@@ -1,0 +1,6 @@
+food = set(input() for _ in range(int(input( 'Сыр, огурец, авокадо, перец'))))  # получаем продукты в холодильнике (генератором и ниже так же в условии)
+for j in range(int(input('N '))): # количество блоков
+    name = input() # получаем название рецепта
+    if food.intersection(set(input() for _ in range(int(input())))): # Возвращает true, если множество (в генераторе) является подмножеством food.
+        print(name)
+
