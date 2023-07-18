@@ -1,0 +1,34 @@
+# создание словаря с рецептами и списком ингредиентов для каждого рецепта
+recipes = {
+    'Салат': ['огурец', 'помидор', 'лук', 'масло', 'укроп'],
+    'Омлет': ['яйца', 'молоко', 'сыр', 'зелень', 'соль', 'перец'],
+    'Суп': ['мясо', 'картошка', 'морковь', 'лук', 'чеснок', 'зелень', 'соль', 'перец', 'вода'],
+    'Запеченная картошка': ['картошка', 'масло', 'сыр', 'укроп', 'соль', 'перец'],
+    'Суши': ['рис', 'рыба', 'авокадо', 'огурец', 'филадельфия '],
+    'Бутерброд': ['хлеб', 'масло', 'сыр'],
+    'Пицца': ['Тесто', 'Помидор', 'Сыр', 'Ветчина']
+    
+}
+
+# создание списка со всеми ингредиентами
+all_ingredients = set()
+for recipe_ingredients in recipes.values():
+    all_ingredients.update(set(recipe_ingredients))
+
+# ввод ингредиентов
+user_ingredients = input('Введите ингредиенты через запятую: ').split(',')
+
+# поиск блюда, которое можно приготовить из максимального количества введенных ингредиентов
+max_matching_ingredients = set()
+matching_recipe = None
+for recipe, recipe_ingredients in recipes.items():
+    matching_ingredients = set(recipe_ingredients).intersection(set(user_ingredients))
+    if len(matching_ingredients) > len(max_matching_ingredients):
+        max_matching_ingredients = matching_ingredients
+        matching_recipe = recipe
+
+# вывод блюда, которое можно приготовить из максимального количества введенных ингредиентов
+if matching_recipe:
+    print(f'Можно приготовить блюдо "{matching_recipe}"')
+else:
+    print('Нет рецептов, которые можно приготовить из введенных ингредиентов.')
